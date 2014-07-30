@@ -267,6 +267,9 @@ document.addEventListener("deviceready", onDeviceReady, false);
 		            	classSun = 'favIt'; 
 		            	favTxt = 'Favorite +';
 		            }else{ classSun = 'sun_Active'; favTxt = 'Added'; }
+	            }else{
+		            classSun = 'favIt'; 
+		            favTxt = 'Favorite +';
 	            }
 	            
 	            if(theCat!=e[t].id){ switcher = 0; }
@@ -328,6 +331,9 @@ document.addEventListener("deviceready", onDeviceReady, false);
 								            	classSun = 'favIt'; 
 								            	favTxt = 'Favorite +';
 								            }else{ classSun = 'sun_Active'; favTxt = 'Added'; }
+							            }else{
+								            classSun = 'favIt'; 
+								            favTxt = 'Favorite +';
 							            }
 	                                
 	                                $(".cat" + e[i].id).append('<div class="portfolio-item-thumb one-half '+AddClass+'"> \

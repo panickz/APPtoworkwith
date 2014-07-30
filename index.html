@@ -255,7 +255,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	        var switcher = 0;
 	        var theCat = null;
 	        for (var t in e) {
-	            
+	            /*
 	            if (localStorage.getItem("favJSON") !== null) {
 	            	var i = JSON.parse(localStorage.getItem("favJSON"));
 		            var s = 0;
@@ -272,6 +272,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 		            classSun = 'favIt'; 
 		            favTxt = 'Favorite +';
 	            }
+	            */
 	            
 	            if(theCat!=e[t].id){ switcher = 0; }
 	            
@@ -315,11 +316,12 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	                        	var switcher = 0;
 	                            for (var o in s) {
 	                              
-	                                
+	                                alert(s[o].cover);
 	                                if(switcher%2){
 		                                var AddClass = 'last-column';
 	                                }else AddClass = '';
-	                                
+	                                	
+	                                	/*
 	                                   if (localStorage.getItem("favJSON") !== null) {
 							            	var i = JSON.parse(localStorage.getItem("favJSON"));
 								            var s = 0;
@@ -336,6 +338,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 								            classSun = 'favIt'; 
 								            favTxt = 'Favorite +';
 							            }
+							            */
 	                                
 	                                $(".cat" + e[i].id).append('<div class="portfolio-item-thumb one-half '+AddClass+'"> \
 	                                								<p style="margin:10px 0 0 0;"> \

@@ -50,8 +50,7 @@ a:hover{
 }
 
 div, a, p, img, blockquote, form, fieldset, textarea, input, label, iframe, code, pre {
-	display: block;
-	overflow:hidden;
+	display: block;s
 	position:relative;
 }
 
@@ -203,7 +202,7 @@ h3{
 }
 
 h4{
-	font-size:14px;
+	font-size: 11px;
 	margin-bottom:10px;
 	font-weight:800;
 	color:#292929;
@@ -219,6 +218,29 @@ h5{
 h1, h2, h3, h4, h5, h6{
 	font-family:'Lato', sans-serif;
 	color:#1f1f1f;	
+}
+.sun_BTN {
+  position: relative;
+  vertical-align: top;
+  width: 100%;
+  height: 50px;
+  padding: 0;
+  font-size: 15px;
+  color: white;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  background: #f1c40f;
+  border: 0;
+  border-bottom: 2px solid #e2b607;
+  cursor: pointer;
+  -webkit-box-shadow: inset 0 -2px #e2b607;
+  box-shadow: inset 0 -2px #e2b607;
+}
+.sun_BTN {
+  top: 1px;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 a{
@@ -289,7 +311,7 @@ a{
 
 .responsive-image{
 	width:100%;
-	margin-bottom:20px;
+	margin-bottom: 10px;
 }
 
 .responsive-video{

@@ -25,8 +25,19 @@
 <script type="text/javascript" src="scripts/custom.js"></script>
 <script type="text/javascript" src="scripts/framework.js"></script>
 <script type="text/javascript" src="scripts/framework.launcher.js"></script>
+<script>
+document.addEventListener("deviceready", onDeviceReady, false);
 
+	function onDeviceReady() {
+		 navigator.splashscreen.hide();
+	}
 
+	function deleteSTR(){	
+		 window.localStorage.removeItem("covers");
+	}
+ 
+
+</script>
 </head>
 <body>
 

@@ -233,10 +233,11 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	            $(".data").append(e)
 	        }
 	    });
+	    var classSun = 'favIt'; 
+		var favTxt = 'Favorite +';
 	    if (typeof window.localStorage.getItem("covers") != "undefined" && window.localStorage.getItem("covers") !== null) {
 	        var e = JSON.parse(window.localStorage.getItem("covers"));
-	        
-	        console.log(e);
+	     
 	        $.ajax({
 	            async: false,
 	            type: "GET",
@@ -313,7 +314,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	                        success: function (s) {
 	                        	var switcher = 0;
 	                            for (var o in s) {
-	                               // $(".cat" + e[i].id).append('<li><div class="cover"><a class="favIt" data-id="' + s[o].hook + '" data-cover="' + s[o].cover + '">Favorite <span style="color:red;">+</span></a><a href="http://www.titlurile-zilei.com/assets/upload/mobile/' + s[o].cover + '" rel="gal' + t + '" class="swipebox" data-id="' + s[o].hook + '" data-cover="' + s[o].cover + '"><img src="http://www.titlurile-zilei.com/assets/upload/mobile/' + s[o].cover + '" alt=""></a>' + s[o].name + "</div></li>");
+	                              
 	                                
 	                                if(switcher%2){
 		                                var AddClass = 'last-column';

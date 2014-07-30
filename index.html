@@ -96,7 +96,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
     	<div class="content-controls solid-color fixed-header">
         	<a href="#" class="deploy-sidebar"></a>
             <em class="content-title"><img src='images/logo.png' style='width: 150px;margin: 0 auto;'></em>
-            <a onclick="$('.content').css('display','none');$('#favorites').fadeIn();" class="deploy-contact"></a>
+            
         </div>    
         <div class="fixed-header-clear"></div>    
        
@@ -209,17 +209,10 @@ document.addEventListener("deviceready", onDeviceReady, false);
 </body>
 </html>
 <script type="text/javascript">
+
+
 	$(function () {
-			/*
-		$(document).on("swiperight",function(){
-		  $.sidr('open', 'menu');
-		  $('div.ui-page').block({ message: null, draggable: false }); 
-		});
-		$(document).on("swipeleft",function(){
-		  $.sidr('close', 'menu');
-		  $('div.ui-page').unblock(); 
-		});
-		*/
+		
 	    $.ajax({
 	        async: false,
 	        type: "GET",
@@ -262,7 +255,21 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	        var theCat = null;
 	        for (var t in e) {
 	            
-	             if(theCat!=e[t].id){ switcher = 0; }
+	            if (localStorage.getItem("favJSON") !== null) {
+	            	var i = JSON.parse(localStorage.getItem("favJSON"));
+		            var s = 0;
+		            for (var o in i) {
+		                if (i[o].id === e[t].hook) {
+		                    s = s + 1
+		                }
+		            }
+		            if (s === 0) {
+		            	classSun = 'favIt'; 
+		            	favTxt = 'Favorite +';
+		            }else{ classSun = 'sun_Active'; favTxt = 'Added'; }
+	            }
+	            
+	            if(theCat!=e[t].id){ switcher = 0; }
 	            
 	            if(switcher%2){
                     var AddClass = 'last-column';
@@ -270,7 +277,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	            
 	             $(".cat" + e[t].id).append('<div class="portfolio-item-thumb one-half '+AddClass+'"> \
 	             	<p style="margin:10px 0 0 0;" > \
-                        <input type="submit" value="Favorite +" class="sun_BTN favIt" data-id="' + e[t].hook + '" data-cover="' + e[t].cover + '"> \
+                        <input type="button" value="'+favTxt+'" class="sun_BTN '+classSun+'" data-id="' + e[t].hook + '" data-cover="' + e[t].cover + '"> \
                     </p> \
                     <a href="http://www.titlurile-zilei.com/assets/upload/mobile/' + e[t].cover + '" class="swipebox" rel="gal' + e[t].id + '"> \
                         <img class="responsive-image" src="http://www.titlurile-zilei.com/assets/upload/mobile/' + e[t].cover + '" alt="img"> \
@@ -294,7 +301,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	                var n = new Array;
 	                var r = new Array;
 	                for (var i in e) {
-	                   	$('.cats').append('<a onclick="$(\'.content\').css(\'display\',\'none\');$(\'#page'+ e[t].id +'\').fadeIn();$(\'.deploy-sidebar\').trigger(\'click\');">' + e[t].category + '<em class="unselected-sub-nav"></em></a>');
+	                   	$('.cats').append('<a onclick="$(\'.content\').css(\'display\',\'none\');$(\'#page'+ e[i].id +'\').fadeIn();$(\'.deploy-sidebar\').trigger(\'click\');">' + e[i].category + '<em class="unselected-sub-nav"></em></a>');
 	                    $.ajax({
 	                        async: false,
 	                        type: "GET",
@@ -309,9 +316,23 @@ document.addEventListener("deviceready", onDeviceReady, false);
 		                                var AddClass = 'last-column';
 	                                }else AddClass = '';
 	                                
+	                                   if (localStorage.getItem("favJSON") !== null) {
+							            	var i = JSON.parse(localStorage.getItem("favJSON"));
+								            var s = 0;
+								            for (var o in i) {
+								                if (i[o].id === e[t].hook) {
+								                    s = s + 1
+								                }
+								            }
+								            if (s === 0) {
+								            	classSun = 'favIt'; 
+								            	favTxt = 'Favorite +';
+								            }else{ classSun = 'sun_Active'; favTxt = 'Added'; }
+							            }
+	                                
 	                                $(".cat" + e[i].id).append('<div class="portfolio-item-thumb one-half '+AddClass+'"> \
 	                                								<p style="margin:10px 0 0 0;"> \
-													                    <input type="submit" value="Favorite +" class="sun_BTN favIt" data-id="' + s[o].hook + '" data-cover="' + s[o].cover + '"> \
+													                    <input type="button" value="'+favTxt+'" class="sun_BTN '+classSun+'" data-id="' + s[o].hook + '" data-cover="' + s[o].cover + '"> \
 													                </p> \
 												                    <a href="http://www.titlurile-zilei.com/assets/upload/mobile/' + s[o].cover + '" class="swipebox" rel="gal' + e[i].id + '"> \
 												                        <img class="responsive-image" src="http://www.titlurile-zilei.com/assets/upload/mobile/' + s[o].cover + '" alt="img"> \
@@ -337,9 +358,54 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	                var s = localStorage.getItem("covers")
 	            }
 	        })
-	    } 
+	    }  
+	});
+	$(document).ready(function () {
+	
+	    $(".swipebox").swipebox({
+	        useCSS: true,
+	        useSVG: true,
+	        hideBarsOnMobile: false,
+	        hideBarsDelay: 3e3
+	    });
+	    
+	    $(".favIt").click(function () {
+	        var e = $(this).attr("data-id");
+	        var t = $(this).attr("data-cover");
+	        if (localStorage.getItem("favJSON") === null) {
+	            var n = [{
+	                id: e,
+	                cover: t
+	            }];
+	            window.localStorage.setItem("favJSON", JSON.stringify(n));
+	            var r = window.localStorage.getItem("favJSON");
+	            $(this).val('Added');
+	            $(this).addClass('sun_Active');
+	        } else {
+	            var n = [{
+	                id: e,
+	                cover: t
+	            }];
+	            var i = JSON.parse(localStorage.getItem("favJSON"));
+	            var s = 0;
+	            for (var o in i) {
+	                if (i[o].id === e) {
+	                    s = s + 1
+	                }
+	            }
+	            if (s === 0) {
+	                var u = $.merge(i, n);
+	                window.localStorage.setItem("favJSON", JSON.stringify(u));
+	                var r = localStorage.getItem("favJSON");
+	                $(this).val('Added');
+	                $(this).addClass('sun_Active');
+	            }
+	            
+	        }
+	    });
 	    
 	    if (localStorage.getItem("favJSON") !== null) {
+	    	$('.fixed-header').append('<a onclick="$(\'.content\').css(\'display\',\'none\');$(\'#favorites\').fadeIn();" class="deploy-contact"></a>');
 	        var n = JSON.parse(localStorage.getItem("favJSON"));
 	        var switcher = 0;
 	        for (var t in n) {
@@ -357,49 +423,5 @@ document.addEventListener("deviceready", onDeviceReady, false);
 	        }
 	    }
 	    
-	    $(".favIt").click(function () {
-	        var e = $(this).attr("data-id");
-	        var t = $(this).attr("data-cover");
-	        if (localStorage.getItem("favJSON") === null) {
-	            var n = [{
-	                id: e,
-	                cover: t
-	            }];
-	            window.localStorage.setItem("favJSON", JSON.stringify(n));
-	            var r = window.localStorage.getItem("favJSON");
-	            $("#sidr-right").append('<div style="width:100%; text-align:center;"><a href="http://www.titlurile-zilei.com/assets/upload/mobile/' + t + '" rel="gfavs" class="swipebox" onclick="$.sidr(\'close\', \'sidr-right\');"><img src="http://www.titlurile-zilei.com/assets/upload/mobile/' + t + '" alt="" style="width: 70%;margin: 23px;"></a> 				  </div>');
-	            
-	            $(this).val('Added');
-	            console.log('ADDED');
-	        } else {
-	            var n = [{
-	                id: e,
-	                cover: t
-	            }];
-	            var i = JSON.parse(localStorage.getItem("favJSON"));
-	            var s = 0;
-	            for (var o in i) {
-	                if (i[o].id === e) {
-	                    s = s + 1
-	                }
-	            }
-	            if (s === 0) {
-	                var u = $.merge(i, n);
-	                window.localStorage.setItem("favJSON", JSON.stringify(u));
-	                var r = localStorage.getItem("favJSON");
-	                $("#sidr-right").append('<div style="width:100%; text-align:center;"><a href="http://www.titlurile-zilei.com/assets/upload/mobile/' + t + '" rel="gfavs" class="swipebox" onclick="$.sidr(\'close\', \'sidr-right\');"><img src="http://www.titlurile-zilei.com/assets/upload/mobile/' + t + '" alt="" style="width: 70%;margin: 23px;"></a></div>');
-	                $(this).val('Added');
-	            }
-	            console.log('ADDED');
-	        }
-	    })
-	});
-	$(document).ready(function () {
-	    $(".swipebox").swipebox({
-	        useCSS: true,
-	        useSVG: true,
-	        hideBarsOnMobile: false,
-	        hideBarsDelay: 3e3
-	    })
 	})
  </script>				 

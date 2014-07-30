@@ -50,7 +50,8 @@ a:hover{
 }
 
 div, a, p, img, blockquote, form, fieldset, textarea, input, label, iframe, code, pre {
-	display: block;s
+	display: block;
+	overflow:hidden;
 	position:relative;
 }
 

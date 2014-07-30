@@ -104,11 +104,11 @@ body {
 }
 
 .deploy-contact{
-	background-image:url(../images/misc/deploy-mail.png);
+	background-image:url(../images/misc/deploy-mail.jpg);
 	background-repeat:no-repeat;
 	width:50px;
 	height:50px;
-	background-size:18px 12px;
+	background-size: 18px 18px;
 	background-position:15px 18px;
 	position:absolute;
 	right:0px;
@@ -312,7 +312,7 @@ and (width : 798px){
 }
 
 .footer-socials{
-	width:110px;
+	width:70px;
 	margin-left:auto;
 	margin-right:auto;
 	margin-bottom:10px;
@@ -354,7 +354,7 @@ and (width : 798px){
 /*//////////////*/
 
 .round-decoration{
-	width:80px;
+	width:50px;
 	border-radius:80px;
 }
 
@@ -399,7 +399,7 @@ and (width : 798px){
 	margin-left:auto;
 	margin-right:auto;
 	margin-top:20px;
-	margin-bottom:20px;
+	margin-bottom: -5px;
 }
 
 .sidebar-header{

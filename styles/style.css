@@ -432,6 +432,12 @@ and (width : 798px){
 	background-color:rgba(0,0,0,0.1);
 }
 
+.slide{ overflow: visible !important; }
+
+.slide > img{ overflow: visible !important; }
+#swipebox-slider{ overflow: visible !important; }
+.swipebox-overlay{ overflow: visible !important; }
+
 .sidebar-breadcrumb p{
 	opacity:0.5;
 	color:#d2d3d4;
@@ -473,7 +479,7 @@ and (width : 798px){
 }
 
 .gallery-nav{
-	background-image:url(../images/misc/nav-camera.png);
+	background-image:url(../images/misc/nav-home.png);
 	background-position:20px 20px;	
 }
 
